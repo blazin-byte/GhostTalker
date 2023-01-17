@@ -22,16 +22,20 @@ def eegFeatureExtraction(df, fs, lowcut, highcut, pcti):
     chan3 = df.iloc[:, 4]
     chan4 = df.iloc[:, 5]
 
+    # rotating the vectors to array
     c1 = np.real(np.asarray(chan1))
     c2 = np.real(np.asarray(chan2))
     c3 = np.real(np.asarray(chan3))
     c4 = np.real(np.asarray(chan4))
+
+    # Normalizing these arrays
     c1 = c1-np.mean(c1)
     c2 = c2-np.mean(c2)
     c3 = c1-np.mean(c3)
     c4 = c4-np.mean(c4)
 
     c1 = c1[fs::]
+
     f1 = featureExtraction(c1, fs, lowcut, highcut, pcti)
     features = np.squeeze(np.shape(f1))
 
